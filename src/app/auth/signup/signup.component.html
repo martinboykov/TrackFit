@@ -1,0 +1,57 @@
+<section class="signup-form-section">
+  <form class="signup-form"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)">
+    <h1>Signup Form</h1>
+
+    <mat-form-field>
+      <mat-label>Your email</mat-label>
+      <input matInput
+             ngModel
+             #emilInput=ngModel
+             email
+             required
+             name="email"
+             type="email">
+      <mat-error *ngIf="emilInput.hasError('required')">Email field is required</mat-error>
+      <mat-error *ngIf="emilInput.hasError('email')">Not a valid email</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Your password</mat-label>
+      <input matInput
+             ngModel
+             #passwordInput=ngModel
+             password
+             required
+             name="password"
+             type="password"
+             minlength="6">
+      <mat-error *ngIf="passwordInput.hasError('required')">Password field is required</mat-error>
+      <mat-error *ngIf="passwordInput.hasError('minlength')">Password must be at least 6 characters long</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a date of birth</mat-label>
+      <input matInput
+             ngModel
+             #dateInput=ngModel
+             name="date"
+             [max]="maxDate"
+             [matDatepicker]="picker"
+             required>
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dateInput.hasError('required')">Must provide a date of birth.</mat-error>
+    </mat-form-field>
+    <mat-checkbox class="terms-checkbox"
+                  name="terms"
+                  [(ngModel)]="checked"
+                  color="primary">Agree to terms and conditions!</mat-checkbox>
+    <!-- <mat-error *ngIf="!checked">Must agree to the terms and conditions.</mat-error> -->
+    <button mat-raised-button
+            [disabled]="!checked || f.invalid"
+            type="submit"
+            color="primary"
+            class="submit-button">Submit</button>
+  </form>
+</section>

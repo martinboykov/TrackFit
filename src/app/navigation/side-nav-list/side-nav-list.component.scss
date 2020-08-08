@@ -1,0 +1,16 @@
+@import 'core/variables';
+@import 'core/mixins';
+
+@include mq($lg) {
+    .side-nav-list {
+        padding-top: 0;
+        .side-nav-list-item {
+            &.active {
+                background: rgba(0, 0, 0,0.04 );
+            }
+            .item-icon {
+                margin-right: 10px;
+            }
+        }
+    }
+}

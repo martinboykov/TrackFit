@@ -1,0 +1,23 @@
+<mat-tab-group [selectedIndex]="selectedTab"
+               mat-align-tabs="center"
+               animationDuration="0ms"
+               (selectedTabChange)="onTabClick($event)">
+  <mat-tab label="New Training">
+    <app-new-training></app-new-training>
+  </mat-tab>
+  <mat-tab label="Past Trainings">
+
+    <ng-container *ngFor="let pastTraining of pastTrainings; let i = index">
+      <app-past-training [training]=pastTraining
+                         [index]=i></app-past-training>
+    </ng-container>
+  </mat-tab>
+  <mat-tab label="Current Trainings">
+    <div class="items-container">
+      <ng-container *ngFor="let currentTraining of currentTrainings; let i = index">
+        <app-current-training [training]=currentTraining
+                              [index]=i></app-current-training>
+      </ng-container>
+    </div>
+  </mat-tab>
+</mat-tab-group>

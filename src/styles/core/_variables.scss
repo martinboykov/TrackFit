@@ -1,0 +1,31 @@
+@import '../../../node_modules/@angular/material/core/theming/_palette';
+@import './mixins';
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+// breakpoints
+
+$min: 320px;
+$sm: 599px;
+$md: 768px;
+$lg: 960px;
+$xl: 1200px;
+
+$spacer: 10px;
+
+// Font families
+$font-default: Roboto, 'Helvetica Neue', sans-serif;
+// $font-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+//     'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+//     'Segoe UI Symbol' !default;
+$headings-font-family: $font-default;
+
+$primary: map-get(
+    $map: $mat-indigo,
+    $key: 500,
+);
+$primary-text: $light-primary-text;
+$secondary-text: $dark-primary-text;

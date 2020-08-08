@@ -1,0 +1,34 @@
+@import 'core/variables';
+@import 'core/mixins';
+
+.side-nav-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.side-nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+}
+
+@include mq($lg) {
+    .side-nav {
+        display: block;
+        position: absolute;
+        top: 64px;
+        bottom: 0;
+        left: 0;
+        width: 240px;
+        max-width: 100%;
+    }
+}
+@include mq($sm) {
+    .side-nav {
+        top: 56px;
+    }
+}

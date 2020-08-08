@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <div class="container">
+    <button mat-icon-button
+            class="side-nav-toggle-button"
+            aria-label="Toggle sidenavigation button"
+            (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/"
+       class="logo">
+
+      <img src="./assets/images/logo.svg"
+           alt="logo image">
+    </a>
+    <div class="nav">
+      <a class="nav-link"
+         routerLink="/login"
+         routerLinkActive="active">
+        Login
+      </a>
+      <a routerLink="/signup"
+         routerLinkActive="active"
+         class="nav-link">
+        Signup
+      </a>
+      <a routerLink="/training"
+         routerLinkActive="active"
+         class="nav-link">
+        Training
+      </a>
+    </div>
+  </div>
+
+</mat-toolbar>

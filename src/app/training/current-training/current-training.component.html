@@ -1,0 +1,21 @@
+<section class="current-training">
+  <h1>{{training.title}}</h1>
+  <mat-progress-spinner class="progress-spinner"
+                        [value]="training.progress"
+                        [mode]="mode">
+  </mat-progress-spinner>
+
+  <p>Keep on training</p>
+  <ng-template [ngIf]="inProgress"
+               [ngIfElse]="stopped">
+    <button mat-raised-button
+            color="primary"
+            (click)="onStop()">Stop</button>
+  </ng-template>
+  <ng-template #stopped>
+    <button mat-raised-button
+            color="primary"
+            (click)="onStart()">Sart</button>
+
+  </ng-template>
+</section>

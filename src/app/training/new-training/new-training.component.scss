@@ -1,0 +1,43 @@
+@import './core/variables';
+@import './core/mixins';
+
+.card {
+    width: 100%;
+    margin: $spacer auto;
+    background-image: url('/assets/images/fitness.jpg');
+    background-position: center;
+    color: $secondary-text;
+    border-radius: 0;
+    .card-header {
+        margin-bottom: $spacer * 2;
+    }
+
+    .card-header .header-title {
+        color: $secondary-text;
+        text-align: center;
+    }
+    .card-content {
+        display: flex;
+        justify-content: center;
+    }
+    .card-actions {
+        display: flex;
+        justify-content: center;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        pointer-events: none;
+        border-radius: 0;
+    }
+}
+@include mq($lg) {
+    .card {
+        max-width: 100%;
+    }
+}
