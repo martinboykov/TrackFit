@@ -1,16 +1,40 @@
 @import 'core/variables';
 @import 'core/mixins';
+.container {
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    height: 64px;
+    .side-nav-toggle-button {
+        color: $primary-text;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    img {
+        width: 120px;
+    }
+}
 
 @include mq($lg) {
     .side-nav-list {
         padding-top: 0;
         .side-nav-list-item {
             &.active {
-                background: rgba(0, 0, 0,0.04 );
+                background: rgba(0, 0, 0, 0.04);
             }
             .item-icon {
                 margin-right: 10px;
             }
+        }
+    }
+}
+@include mq($sm) {
+    .container {
+        height: 56px;
+        img {
+            width: 100px;
         }
     }
 }

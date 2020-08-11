@@ -5,10 +5,11 @@
                [autoFocus]="'false'"
                role="navigation"
                class="side-nav">
-    <app-side-nav-list></app-side-nav-list>
+    <app-side-nav-list [drawer]="drawer"></app-side-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="side-nav-content">
     <app-header [drawer]="drawer"></app-header>
+    <div class="backdrop"></div>
     <main class="container">
       <router-outlet></router-outlet>
     </main>

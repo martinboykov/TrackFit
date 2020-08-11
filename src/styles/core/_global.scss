@@ -29,8 +29,8 @@ body {
 }
 #tf {
     .mat-toolbar-single-row {
-        padding-left: $spacer * 2;
-        padding-right: $spacer * 2;
+        padding-left: 0;
+        padding-right:0;
     }
     .mat-card {
         .mat-card-header-text {
@@ -51,10 +51,6 @@ body {
         }
         .items-container {
             grid-template-columns: 1fr;
-        }
-        .mat-toolbar-single-row {
-            padding-left: $spacer;
-            padding-right: $spacer;
         }
     }
 }

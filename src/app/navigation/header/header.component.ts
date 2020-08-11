@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav/drawer';
-import { MatSidenav } from '@angular/material/sidenav';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-header',

@@ -1,4 +1,18 @@
 <mat-nav-list class="side-nav-list">
+  <div class="container">
+    <button mat-icon-button
+            class="side-nav-toggle-button"
+            aria-label="Toggle sidenavigation button"
+            (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a routerLink="/"
+       class="logo">
+
+      <img src="./assets/images/logo.svg"
+           alt="logo image">
+    </a>
+  </div>
   <a mat-list-item
      routerLink=""
      routerLinkActive="active"
