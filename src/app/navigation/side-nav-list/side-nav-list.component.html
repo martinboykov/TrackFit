@@ -32,7 +32,17 @@
               class="item-icon">fitness_center</mat-icon>
     Training
   </a>
-  <a mat-list-item
+  <a *ngIf="isAuth"
+     mat-list-item
+     (click)="onLogout()"
+     class="side-nav-list-item">
+    <mat-icon aria-hidden="false"
+              aria-label="App logo icon"
+              class="item-icon">eject</mat-icon>
+    Logout
+  </a>
+  <a *ngIf="!isAuth"
+     mat-list-item
      routerLink="/login"
      routerLinkActive="active"
      class="side-nav-list-item">
@@ -42,7 +52,8 @@
     Login
 
   </a>
-  <a mat-list-item
+  <a *ngIf="!isAuth"
+     mat-list-item
      routerLink="/signup"
      routerLinkActive="active"
      class="side-nav-list-item">
@@ -52,15 +63,6 @@
               class="item-icon">person_add_alt_1</mat-icon>
     Signup
   </a>
-  <a mat-list-item
-     routerLink="/signup"
-     routerLinkActive="active"
-     class="side-nav-list-item">
-    <mat-icon aria-hidden="false"
-              aria-label="App logo icon"
-              class="item-icon">eject</mat-icon>
-    Logout
 
-  </a>
 
 </mat-nav-list>

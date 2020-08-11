@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SideNavListComponent } from './navigation/side-nav-list/side-nav-list.component';
 import { StopTrainingComponent } from './training/current-training/stop-training/stop-training.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
         BrowserAnimationsModule,
         MaterialModule,
     ],
-    providers: [],
+    providers: [AuthGuard],
     bootstrap: [AppComponent],
     entryComponents: [StopTrainingComponent],
 })

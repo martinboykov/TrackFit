@@ -14,13 +14,20 @@
     </a>
     <div class="nav">
       <a class="nav-link"
+         (click)="onLogout()"
+         *ngIf="isAuth">
+        Logout
+      </a>
+      <a class="nav-link"
          routerLink="/login"
-         routerLinkActive="active">
+         routerLinkActive="active"
+         *ngIf="!isAuth">
         Login
       </a>
       <a routerLink="/signup"
          routerLinkActive="active"
-         class="nav-link">
+         class="nav-link"
+         *ngIf="!isAuth">
         Signup
       </a>
       <a routerLink="/training"

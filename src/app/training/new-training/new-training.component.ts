@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TrainingService } from '../training.service';
-import { TrainingI, Training } from '../training.model';
+import { Training } from '../training.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
@@ -21,6 +21,8 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
                 console.log(this.exercises);
             }
         );
+        console.log('init');
+
     }
     ngOnDestroy() {
         this.exercisesSub.unsubscribe();

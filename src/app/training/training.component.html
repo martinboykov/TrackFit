@@ -6,11 +6,10 @@
     <app-new-training></app-new-training>
   </mat-tab>
   <mat-tab label="Past Trainings">
-
-    <ng-container *ngFor="let pastTraining of pastTrainings; let i = index">
-      <app-past-training [training]=pastTraining
-                         [index]=i></app-past-training>
-    </ng-container>
+    <app-past-training></app-past-training>
+    <!-- <ng-container *ngFor="let pastTraining of pastTrainings; let i = index">
+      <app-past-training></app-past-training>
+    </ng-container> -->
   </mat-tab>
   <mat-tab label="Current Trainings">
     <div class="items-container">

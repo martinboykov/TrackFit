@@ -1,0 +1,19 @@
+@import 'core/variables';
+.signup-form {
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 400px;
+}
+h1 {
+    text-align: center;
+    color: $primary;
+}
+.terms-checkbox {
+    margin-top: 10px;
+}
+.submit-button {
+    margin-top: 10px;
+    text-transform: uppercase;
+}
