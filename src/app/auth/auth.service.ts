@@ -3,41 +3,67 @@ import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from 'src/environments/secret';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private user: User = null;
+    // private user: User = null;
     authChange$ = new BehaviorSubject<boolean>(false);
-    constructor(private router: Router) {}
+    constructor(private router: Router, private fireAuthS: AngularFireAuth) {}
+    authListener() {
+        this.fireAuthS.authState.subscribe((user) => {
+            if (user) {
+                this.onAuthStatusChange(true, '/training');
+            } else {
+                this.onAuthStatusChange(false, '/login');
+            }
+        });
+    }
     signup(authData: AuthData) {
-        this.user = {
-            email: authData.email,
-            userId: Math.round(Math.random() * 10000).toString(),
-        };
-        this.onAuthStatusChange(true, '/training');
+        this.fireAuthS.auth
+            .createUserWithEmailAndPassword(authData.email, authData.password)
+            .then((response) => {
+                console.log(response);
+                this.onAuthStatusChange(true, '/training');
+            })
+            .catch((error) => {
+                console.log(error);
+                this.onAuthStatusChange(false);
+            });
     }
     login(authData: AuthData) {
-        this.user = {
-            email: authData.email,
-        };
-        this.onAuthStatusChange(true, '/training');
+        this.fireAuthS.auth
+            .signInWithEmailAndPassword(authData.email, authData.password)
+            .then((response) => {
+                console.log(response);
+                this.onAuthStatusChange(true, '/training');
+            })
+            .catch((error) => {
+                console.log(error);
+                this.onAuthStatusChange(false);
+            });
     }
     logout() {
-        this.user = null;
         this.onAuthStatusChange(false, '/login');
+        localStorage.removeItem(
+            `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
+        );
     }
     getUser() {
-        return { ...this.user }; // return new user object => no obj mutation
+        // return { ...this.user }; // return new user object => no obj mutation
     }
 
     isAuth() {
-        return this.user != null;
+        return this.authChange$.getValue();
     }
 
-    onAuthStatusChange(isAuth, toRoute) {
+    onAuthStatusChange(isAuth, toRoute = null) {
         this.authChange$.next(isAuth);
-        this.router.navigate([toRoute]);
+        if (toRoute) {
+            this.router.navigate([toRoute]);
+        }
     }
 }

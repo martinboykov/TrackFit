@@ -6,8 +6,11 @@
 <mat-dialog-actions>
   <button mat-raised-button
           title="You are choosing to terminate the training"
-          [mat-dialog-close]="true">Terminate</button>
+          [mat-dialog-close]="'terminate'">Terminate</button>
   <button mat-raised-button
           title="You are choosing to continue width the training"
-          [mat-dialog-close]="false">Continue</button>
+          [mat-dialog-close]="'continue'">Continue</button>
+  <button mat-raised-button
+          title="You are choosing to stop the progress for the time beeing"
+          [mat-dialog-close]="'freeze'">Back</button>
 </mat-dialog-actions>

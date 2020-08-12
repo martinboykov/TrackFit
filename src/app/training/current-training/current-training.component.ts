@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { StopTrainingComponent } from './stop-training/stop-training.component';
 import { Training, TrainingState } from '../training.model';
 import { TrainingService } from '../training.service';
@@ -24,8 +24,6 @@ export class CurrentTrainingComponent implements OnInit {
     ngOnInit(): void {
         this.mode = 'determinate';
         this.inProgress = false;
-        console.log('init');
-
     }
 
     onStart() {
@@ -42,12 +40,15 @@ export class CurrentTrainingComponent implements OnInit {
             },
         });
         dialogRef.afterClosed().subscribe((result) => {
-            if (!result) {
+            if (result === 'continue') {
                 this.inProgress = true;
                 this.progressInit();
-            } else {
+                // this.trainingS.updateCurrent(this.training);
+            } else if (result === 'terminate') {
                 this.inProgress = false;
                 this.sentToPast(TrainingState.cancelled);
+            } else if (result === 'freeze') {
+                this.trainingS.updateCurrent(this.training);
             }
         });
     }

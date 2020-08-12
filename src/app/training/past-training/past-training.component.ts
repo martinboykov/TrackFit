@@ -15,11 +15,12 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     pastTrainingSub: Subscription;
-    displayedColumns = ['dateStart', 'name', 'duration', 'state'];
+    displayedColumns = ['dateStart', 'name', 'progress', 'state'];
     pastTrainings = new MatTableDataSource<Training>();
     constructor(private trainingS: TrainingService) {}
 
     ngOnInit() {
+        this.trainingS.getAllPast();
         this.pastTrainingSub = this.trainingS.pastTrainingsSub.subscribe(
             (trainings) => {
                 this.pastTrainings.data = trainings;

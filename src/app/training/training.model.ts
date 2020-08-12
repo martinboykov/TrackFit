@@ -13,11 +13,11 @@ export interface Training {
     id: string;
     name: string;
     type: BodyPart;
-    reps: number;
     sets: number;
+    reps: number;
     duration: number;
     progress: number;
+    state: TrainingState;
     dateStart?: Date;
     dateEnd?: Date;
-    state: TrainingState;
 }

@@ -20,11 +20,11 @@
                      mat-sort-header> Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="duration">
+  <ng-container matColumnDef="progress">
     <mat-header-cell mat-header-cell
                      *matHeaderCellDef
-                     mat-sort-header>Duration</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.duration | number}} </mat-cell>
+                     mat-sort-header>Progress</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.progress | number}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="state">
     <mat-header-cell mat-header-cell

@@ -2,16 +2,13 @@
                mat-align-tabs="center"
                animationDuration="0ms"
                (selectedTabChange)="onTabClick($event)">
-  <mat-tab label="New Training">
+  <mat-tab label="New Workout">
     <app-new-training></app-new-training>
   </mat-tab>
-  <mat-tab label="Past Trainings">
+  <mat-tab label="Past Workouts">
     <app-past-training></app-past-training>
-    <!-- <ng-container *ngFor="let pastTraining of pastTrainings; let i = index">
-      <app-past-training></app-past-training>
-    </ng-container> -->
   </mat-tab>
-  <mat-tab label="Current Trainings">
+  <mat-tab label="Current Workouts">
     <div class="items-container">
       <ng-container *ngFor="let currentTraining of currentTrainings; let i = index">
         <app-current-training [training]=currentTraining

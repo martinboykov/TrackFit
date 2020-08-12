@@ -19,23 +19,23 @@ export class TrainingComponent implements OnInit, OnDestroy {
     constructor(private trainingS: TrainingService) {}
 
     ngOnInit(): void {
-        this.currentTrainingsSub = this.trainingS.currentTrainingsSub.subscribe(
-            (trainings) => {
-                this.currentTrainings = trainings;
-            }
-        );
-        this.pastTrainingsSub = this.trainingS.pastTrainingsSub.subscribe(
-            (trainings) => {
-                this.pastTrainings = trainings;
-            }
-        );
         this.selectedTabSub = this.trainingS.tabSub.subscribe((tab) => {
             this.selectedTab = tab;
         });
+
+        this.trainingS.getAllExcersises();
+        this.trainingS.getAllCurrent();
+        this.currentTrainingsSub = this.trainingS.currentTrainingsSub.subscribe(
+            (trainings) => {
+                console.log(trainings);
+
+                this.currentTrainings = trainings;
+            }
+        );
+
     }
     ngOnDestroy() {
         this.currentTrainingsSub.unsubscribe();
-        this.pastTrainingsSub.unsubscribe();
         this.selectedTabSub.unsubscribe();
     }
     onTabClick(tab: MatTabChangeEvent) {

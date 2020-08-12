@@ -18,7 +18,10 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SideNavListComponent } from './navigation/side-nav-list/side-nav-list.component';
 import { StopTrainingComponent } from './training/current-training/stop-training/stop-training.component';
 import { AuthGuard } from './auth/auth.guard';
-
+import { AngularFireModule } from 'angularfire2';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 @NgModule({
     declarations: [
         AppComponent,
@@ -40,6 +43,9 @@ import { AuthGuard } from './auth/auth.guard';
         FormsModule,
         BrowserAnimationsModule,
         MaterialModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
     ],
     providers: [AuthGuard],
     bootstrap: [AppComponent],

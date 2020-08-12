@@ -18,7 +18,6 @@ export class SignupComponent implements OnInit {
         this.checked = false;
     }
     onSubmit(f: NgForm) {
-        console.log(f.value);
         this.authS.signup({
             email: f.value.email,
             password: f.value.password,
