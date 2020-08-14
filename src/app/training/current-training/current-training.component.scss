@@ -1,5 +1,6 @@
 @import 'core/variables';
 @import 'core/mixins';
+
 .current-training {
     display: flex;
     flex-flow: column nowrap;
@@ -26,8 +27,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 18px;
-
-      }
+    }
 }
 .card-actions {
     display: flex;

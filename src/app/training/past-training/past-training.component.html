@@ -32,11 +32,20 @@
                      mat-sort-header>Progress</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.progress | number}} </mat-cell>
   </ng-container>
+
   <ng-container matColumnDef="state">
     <mat-header-cell mat-header-cell
                      *matHeaderCellDef
                      mat-sort-header>State</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <mat-header-cell mat-header-cell
+                     *matHeaderCellDef
+                     mat-sort-header></mat-header-cell>
+    <mat-cell *matCellDef="let element"> <button mat-icon-button (click)="onDelete(element.id)">
+        <mat-icon class="mat-18">delete</mat-icon>
+    </button> </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

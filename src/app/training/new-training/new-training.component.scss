@@ -2,8 +2,7 @@
 @import './core/mixins';
 
 .card {
-    width: 100%;
-    margin: $spacer auto;
+    margin: $spacer;
     background-image: url('/assets/images/fitness.jpg');
     background-image: linear-gradient(
             rgba(255, 255, 255, 0.9),

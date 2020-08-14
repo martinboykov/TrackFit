@@ -2,7 +2,5 @@
 @import 'core/mixins';
 
 .items-container {
-    margin-top: $spacer;
-    margin-bottom: $spacer;
+    padding: $spacer;
 }
-

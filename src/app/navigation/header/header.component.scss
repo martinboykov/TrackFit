@@ -21,6 +21,7 @@ a {
     display: flex;
     align-items: center;
     height: 100%;
+    margin-left: $spacer;
     img {
         width: 120px;
     }
@@ -76,6 +77,9 @@ a {
     }
 }
 @include mq($lg) {
+    .logo {
+        margin-left: 0;
+    }
     .side-nav-toggle-button {
         display: block;
     }
@@ -84,6 +88,11 @@ a {
     }
 }
 
+@include mq($md) {
+    .logo {
+        margin-left: 0;
+    }
+}
 @include mq($sm) {
     .logo {
         img {

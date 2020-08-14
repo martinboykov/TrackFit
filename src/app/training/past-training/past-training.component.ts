@@ -22,7 +22,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     pastTrainingSub: Subscription;
-    displayedColumns = ['dateStart', 'name', 'duration', 'progress', 'state'];
+    displayedColumns = ['dateStart', 'name', 'duration', 'progress', 'state', 'delete'];
     pastTrainings = new MatTableDataSource<Training>();
     constructor(private trainingS: TrainingService) {}
 
@@ -44,7 +44,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
     doFilter(value) {
         this.pastTrainings.filter = value.trim().toLowerCase();
     }
-    // toDeleteTraining() {
-    //     this.trainingS.deleteFromPast(this.training.id);
-    // }
+    onDelete(id: string){
+        this.trainingS.deleteFromPast(id);
+    }
 }
