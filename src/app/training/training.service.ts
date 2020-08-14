@@ -9,49 +9,15 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class TrainingService {
     tabSub = new BehaviorSubject<number>(1);
-    dummyDb: Training[] = [
-        {
-            id: '1',
-            name: 'pushups',
-            type: BodyPart.upper,
-            reps: 12,
-            sets: 5,
-            duration: 0,
-            progress: 0,
-            dateStart: new Date(),
-            state: TrainingState.started,
-        },
-        {
-            id: '2',
-            name: 'pullups',
-            type: BodyPart.upper,
-            reps: 12,
-            sets: 5,
-            duration: 0,
-            progress: 0,
-            dateStart: new Date(),
-            state: TrainingState.started,
-        },
-        {
-            id: '3',
-            name: 'squats',
-            type: BodyPart.full,
-            reps: 12,
-            sets: 5,
-            duration: 0,
-            progress: 0,
-            dateStart: new Date(),
-            state: TrainingState.started,
-        },
-    ];
-    exercises: Training[];
+
+    exercises: Training[] = [];
     exercisesSub = new BehaviorSubject<Training[]>(this.exercises);
 
-    currentTrainings = [];
+    currentTrainings: Training[] = [];
     currentTrainingsSub = new BehaviorSubject<Training[]>(
         this.currentTrainings
     );
-    pastTrainings = [];
+    pastTrainings: Training[] = [];
     pastTrainingsSub = new BehaviorSubject<Training[]>(this.pastTrainings);
 
     constructor(private db: AngularFirestore) {}
@@ -71,7 +37,7 @@ export class TrainingService {
                             id: data.payload.doc.id,
                             name: data.payload.doc.data().name,
                             type: data.payload.doc.data().type,
-                            sets: data.payload.doc.data().sets,
+                            // sets: data.payload.doc.data().sets,
                             reps: data.payload.doc.data().reps,
                             duration: data.payload.doc.data().duration,
                             progress: data.payload.doc.data().progress,
@@ -83,17 +49,38 @@ export class TrainingService {
                 (exercises: Training[]) => {
                     this.exercisesSub.next(exercises);
                     console.log(exercises);
-
                 },
                 (error) => {
                     console.log(error);
                 }
             );
     }
-
-    getAllCurrent() {
+    getCurrent(id: string) {
+        return this.db
+            .collection<Training>('currentTraining')
+            .doc<Training>(id)
+            .snapshotChanges()
+            .pipe(
+                map((data) => {
+                    // return response.map((data) => {
+                    return {
+                        id: data.payload.id,
+                        name: data.payload.data().name,
+                        type: data.payload.data().type,
+                        // sets: data.payload.doc.data().sets,
+                        reps: data.payload.data().reps,
+                        duration: data.payload.data().duration,
+                        progress: data.payload.data().progress,
+                        state: data.payload.data().state,
+                        dateStart: data.payload.data().dateStart.toDate(),
+                    };
+                    // });
+                })
+            );
+    }
+    getAllCurrent$() {
         this.db
-            .collection<any>('currentTraining')
+            .collection<Training>('currentTraining')
             .snapshotChanges()
             .pipe(
                 map((response) => {
@@ -102,7 +89,7 @@ export class TrainingService {
                             id: data.payload.doc.id,
                             name: data.payload.doc.data().name,
                             type: data.payload.doc.data().type,
-                            sets: data.payload.doc.data().sets,
+                            // sets: data.payload.doc.data().sets,
                             reps: data.payload.doc.data().reps,
                             duration: data.payload.doc.data().duration,
                             progress: data.payload.doc.data().progress,
@@ -115,9 +102,9 @@ export class TrainingService {
                 })
             )
             .subscribe(
-                (exercises: Training[]) => {
-                    this.currentTrainingsSub.next(exercises);
-
+                (trainings: Training[]) => {
+                    this.currentTrainingsSub.next(trainings);
+                    this.currentTrainings = trainings;
                 },
                 (error) => {
                     console.log(error);
@@ -125,10 +112,11 @@ export class TrainingService {
             );
     }
     updateCurrent(training: Training) {
-        this.db
-            .collection('currentTraining')
-            .doc(training.id)
-            .update({ progress: training.progress });
+        this.db.collection('currentTraining').doc(training.id).update({
+            progress: training.progress,
+            duration: training.duration,
+            reps: training.reps,
+        });
     }
     addToCurrent(training: Training) {
         const newCurrentTraining = {
@@ -151,7 +139,7 @@ export class TrainingService {
     }
     getAllPast() {
         this.db
-            .collection<any>('pastTraining')
+            .collection<Training>('pastTraining')
             .snapshotChanges()
             .pipe(
                 map((response) => {
@@ -160,7 +148,7 @@ export class TrainingService {
                             id: data.payload.doc.id,
                             name: data.payload.doc.data().name,
                             type: data.payload.doc.data().type,
-                            sets: data.payload.doc.data().sets,
+                            // sets: data.payload.doc.data().sets,
                             reps: data.payload.doc.data().reps,
                             duration: data.payload.doc.data().duration,
                             progress: data.payload.doc.data().progress,
@@ -168,7 +156,7 @@ export class TrainingService {
                             dateStart: data.payload.doc
                                 .data()
                                 .dateStart.toDate(),
-                            dateEnd: data.payload.doc.data().dateStart.toDate(),
+                            dateEnd: data.payload.doc.data().dateEnd.toDate(),
                         };
                     });
                 })

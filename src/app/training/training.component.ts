@@ -24,7 +24,7 @@ export class TrainingComponent implements OnInit, OnDestroy {
         });
 
         this.trainingS.getAllExcersises();
-        this.trainingS.getAllCurrent();
+        this.trainingS.getAllCurrent$();
         this.currentTrainingsSub = this.trainingS.currentTrainingsSub.subscribe(
             (trainings) => {
                 console.log(trainings);

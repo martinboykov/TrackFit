@@ -30,7 +30,7 @@ body {
 #tf {
     .mat-toolbar-single-row {
         padding-left: 0;
-        padding-right:0;
+        padding-right: 0;
     }
     .mat-card {
         .mat-card-header-text {
@@ -45,6 +45,14 @@ body {
 }
 
 @include mq($lg) {
+    #tf {
+        .container {
+            padding: $spacer;
+        }
+    }
+}
+
+@include mq($sm) {
     #tf {
         .container {
             padding: $spacer;

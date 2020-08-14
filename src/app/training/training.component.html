@@ -5,9 +5,6 @@
   <mat-tab label="New Workout">
     <app-new-training></app-new-training>
   </mat-tab>
-  <mat-tab label="Past Workouts">
-    <app-past-training></app-past-training>
-  </mat-tab>
   <mat-tab label="Current Workouts">
     <div class="items-container">
       <ng-container *ngFor="let currentTraining of currentTrainings; let i = index">
@@ -15,5 +12,8 @@
                               [index]=i></app-current-training>
       </ng-container>
     </div>
+  </mat-tab>
+  <mat-tab label="Past Workouts">
+    <app-past-training></app-past-training>
   </mat-tab>
 </mat-tab-group>

@@ -9,5 +9,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class StopTrainingComponent implements OnInit {
     constructor(@Inject(MAT_DIALOG_DATA) public passedData: any) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        console.log(this.passedData.progress);
+
+    }
 }

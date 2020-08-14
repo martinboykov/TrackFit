@@ -13,6 +13,11 @@
            alt="logo image">
     </a>
     <div class="nav">
+      <a routerLink="/training"
+         routerLinkActive="active"
+         class="nav-link">
+        Training
+      </a>
       <a class="nav-link"
          (click)="onLogout()"
          *ngIf="isAuth">
@@ -29,11 +34,6 @@
          class="nav-link"
          *ngIf="!isAuth">
         Signup
-      </a>
-      <a routerLink="/training"
-         routerLinkActive="active"
-         class="nav-link">
-        Training
       </a>
     </div>
   </div>

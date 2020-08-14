@@ -12,13 +12,19 @@
     <mat-header-cell mat-header-cell
                      *matHeaderCellDef
                      mat-sort-header> Date </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.dateStart | date: 'LL.MM.yy - H:mm' }} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.dateStart | date: 'medium' }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell mat-header-cell
                      *matHeaderCellDef
                      mat-sort-header> Name </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="duration">
+    <mat-header-cell mat-header-cell
+                     *matHeaderCellDef
+                     mat-sort-header>Duration</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.duration | number}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="progress">
     <mat-header-cell mat-header-cell
@@ -37,6 +43,6 @@
 </mat-table>
 <mat-paginator #paginator
                [length]="100"
-               [pageSize]="1"
+               [pageSize]="10"
                [pageSizeOptions]="[1, 5, 10, 25, 100]">
 </mat-paginator>

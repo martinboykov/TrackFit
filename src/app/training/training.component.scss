@@ -1,3 +1,8 @@
-.items-container{
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+@import 'core/variables';
+@import 'core/mixins';
+
+.items-container {
+    margin-top: $spacer;
+    margin-bottom: $spacer;
 }
+

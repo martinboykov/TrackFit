@@ -1,4 +1,4 @@
-<section class="current-training">
+<!-- <section class="current-training">
   <h4 class="name">{{training.name}}</h4>
   <mat-progress-spinner class="progress-spinner"
                         [value]="training.progress"
@@ -18,4 +18,55 @@
             (click)="onStart()">Sart</button>
 
   </ng-template>
-</section>
+</section> -->
+
+
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <mat-card-title class="header-title">{{training.name}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <section class="section section-spinner">
+      <span class="duration">{{training.duration}}s</span>
+      <mat-progress-spinner class="progress-spinner"
+                            [value]="training.progress"
+                            [mode]="mode">
+      </mat-progress-spinner>
+    </section>
+
+    <section class="section section-input">
+      <mat-label>Reps</mat-label>
+      <mat-slider thumbLabel
+                  tickInterval="1"
+                  min="0"
+                  max={{training.reps}}
+                  #sliderRef></mat-slider>
+    </section>
+
+  </mat-card-content>
+  <mat-card-actions class="card-actions">
+    <ng-template [ngIf]="inProgress"
+                 [ngIfElse]="stopped">
+      <button mat-raised-button
+              color="primary"
+              (click)="onPause()">Pause</button>
+    </ng-template>
+    <ng-template #stopped>
+      <button mat-raised-button
+              color="primary"
+              (click)="onStart()">Sart</button>
+    </ng-template>
+
+    <ng-template [ngIf]="isFinished"
+                 [ngIfElse]="finished">
+      <button mat-raised-button
+              color="primary"
+              (click)="onFinished()">Finish</button>
+    </ng-template>
+    <ng-template #finished>
+      <button mat-raised-button
+              color="primary"
+              (click)="onTerminate()">Terminate</button>
+    </ng-template>
+  </mat-card-actions>
+</mat-card>

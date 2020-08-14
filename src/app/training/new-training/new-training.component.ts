@@ -26,6 +26,6 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     }
     onSubmit(f: NgForm) {
         this.trainingS.addToCurrent(f.value.exercise);
-        this.trainingS.changeTabTo(2);
+        this.trainingS.changeTabTo(1);
     }
 }

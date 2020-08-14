@@ -1,3 +1,5 @@
+<app-header [drawer]="drawer" class="header"></app-header>
+
 <mat-sidenav-container [hasBackdrop]="'true'"
                        class="side-nav-container">
   <mat-sidenav #drawer
@@ -8,8 +10,6 @@
     <app-side-nav-list [drawer]="drawer"></app-side-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="side-nav-content">
-    <app-header [drawer]="drawer"></app-header>
-    <div class="backdrop"></div>
     <main class="container">
       <router-outlet></router-outlet>
     </main>

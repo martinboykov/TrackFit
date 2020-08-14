@@ -1,12 +1,17 @@
 @import 'core/variables';
 @import 'core/mixins';
+.header {
+    position: relative;
+    z-index: 3;
+}
 
 .side-nav-container {
     position: absolute;
-    top: 0;
+    top: 64px;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 2;
 }
 .side-nav {
     display: none;
@@ -29,6 +34,9 @@
     }
 }
 @include mq($sm) {
+    .side-nav-container {
+        top: 56px;
+    }
     .side-nav {
         // top: 56px;
     }

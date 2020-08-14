@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    Input,
+    OnDestroy,
+    ViewChild,
+    AfterViewInit,
+} from '@angular/core';
 import { Training, TrainingState, BodyPart } from '../training.model';
 import { TrainingService } from '../training.service';
 import { Subscription } from 'rxjs';
@@ -15,7 +22,7 @@ export class PastTrainingComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     pastTrainingSub: Subscription;
-    displayedColumns = ['dateStart', 'name', 'progress', 'state'];
+    displayedColumns = ['dateStart', 'name', 'duration', 'progress', 'state'];
     pastTrainings = new MatTableDataSource<Training>();
     constructor(private trainingS: TrainingService) {}
 

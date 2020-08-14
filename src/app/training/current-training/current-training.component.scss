@@ -1,9 +1,40 @@
-.current-training{
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items:  center;
-  .name {
+@import 'core/variables';
+@import 'core/mixins';
+.current-training {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    .name {
+        text-transform: uppercase;
+    }
+}
+
+.section {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+.section-spinner {
+    position: relative;
+    margin: $spacer auto;
+
+    .duration {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px;
+
+      }
+}
+.card-actions {
+    display: flex;
+    justify-content: center;
+}
+.header-title {
+    font-size: 14px;
+    text-align: center;
     text-transform: uppercase;
-  }
 }

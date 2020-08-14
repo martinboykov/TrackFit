@@ -1,16 +1,19 @@
 <mat-dialog-content>
-  <p>You already got {{passedData.progress}}%</p>
-  <p>Push...!</p>
+        <ng-template *ngIf="passedData.progress >50">
+                <p>You already got {{passedData.progress}}%</p>
+                <p>Push...!</p>
+        </ng-template>
+        <ng-template *ngIf="passedData.progress <=50">
+                <p>Dont give up now!</p>
+                <p>You can do it!</p>
+        </ng-template>
 </mat-dialog-content>
 <h2 mat-dialog-title>What are you going to choose?</h2>
 <mat-dialog-actions>
-  <button mat-raised-button
-          title="You are choosing to terminate the training"
-          [mat-dialog-close]="'terminate'">Terminate</button>
-  <button mat-raised-button
-          title="You are choosing to continue width the training"
-          [mat-dialog-close]="'continue'">Continue</button>
-  <button mat-raised-button
-          title="You are choosing to stop the progress for the time beeing"
-          [mat-dialog-close]="'freeze'">Back</button>
+        <button mat-raised-button
+                title="You are choosing to continue width the training"
+                [mat-dialog-close]="false">No</button>
+        <button mat-raised-button
+                title="You are choosing to terminate the training"
+                [mat-dialog-close]="true">Yes</button>
 </mat-dialog-actions>
