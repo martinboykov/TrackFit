@@ -51,15 +51,11 @@ body {
 
 @include mq($lg) {
     #tf {
-        .container {
-        }
     }
 }
 
 @include mq($sm) {
     #tf {
-        .container {
-        }
         .items-container {
             grid-template-columns: 1fr;
         }

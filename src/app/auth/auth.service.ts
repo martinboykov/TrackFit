@@ -11,7 +11,7 @@ import { firebaseConfig } from 'src/environments/secret';
 })
 export class AuthService {
     // private user: User = null;
-    authChange$ = new BehaviorSubject<boolean>(false);
+    authChange = new BehaviorSubject<boolean>(false);
     constructor(private router: Router, private fireAuthS: AngularFireAuth) {}
     authListener() {
         this.fireAuthS.authState.subscribe((user) => {
@@ -26,7 +26,6 @@ export class AuthService {
         this.fireAuthS.auth
             .createUserWithEmailAndPassword(authData.email, authData.password)
             .then((response) => {
-                console.log(response);
                 this.onAuthStatusChange(true, '/training');
             })
             .catch((error) => {
@@ -57,11 +56,11 @@ export class AuthService {
     }
 
     isAuth() {
-        return this.authChange$.getValue();
+        return this.authChange.getValue();
     }
 
     onAuthStatusChange(isAuth, toRoute = null) {
-        this.authChange$.next(isAuth);
+        this.authChange.next(isAuth);
         if (toRoute) {
             this.router.navigate([toRoute]);
         }

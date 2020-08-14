@@ -8,7 +8,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
     providedIn: 'root',
 })
 export class TrainingService {
-    tabSub = new BehaviorSubject<number>(1);
+    tabSub = new BehaviorSubject<number>(0);
 
     exercises: Training[] = [];
     exercisesSub = new BehaviorSubject<Training[]>(this.exercises);

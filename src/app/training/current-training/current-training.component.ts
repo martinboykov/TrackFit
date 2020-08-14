@@ -46,7 +46,6 @@ export class CurrentTrainingComponent
             .pipe(take(1))
             .subscribe(() => {
                 this.sliderRef.value = this.training.repsCompleted;
-                console.log(this.sliderRef.value, this.training.repsCompleted);
             });
 
         this.sliderRef.valueChange.subscribe((value) => {

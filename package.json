@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "test": "ng test  --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build": "ng build",
+    "deploy": "ng deploy"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +22,10 @@
     "@angular/platform-browser": "~9.1.4",
     "@angular/platform-browser-dynamic": "~9.1.4",
     "@angular/router": "~9.1.4",
+    "angular-cli-ghpages": "^0.6.2",
     "angularfire2": "^5.4.2",
     "firebase": "^7.17.2",
+    "puppeteer": "^5.2.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
