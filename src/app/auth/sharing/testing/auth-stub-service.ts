@@ -1,13 +1,17 @@
-import { AbstractMockObservableService } from 'src/app/testing';
-import { BehaviorSubject } from 'rxjs';
+import {  of } from 'rxjs';
 
-export class AuthMockService extends AbstractMockObservableService {
-    authChange = new BehaviorSubject<boolean>(false);
+export const authMockService = {
+    authListener: () => {},
+    authChange: of(true),
+    logout: () => 'logged out',
+    login: () => 'logged in',
+};
 
-    authListener() {
-        return this;
+export const AngularFireAuthStub: any = {
+    authState: {},
+    auth: {
+      signInWithEmailAndPassword() {
+        return Promise.resolve();
+      }
     }
-    logout() {
-        return this;
-    }
-}
+  };

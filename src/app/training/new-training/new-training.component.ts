@@ -22,7 +22,9 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
         );
     }
     ngOnDestroy() {
-        this.exercisesSub.unsubscribe();
+        if (this.exercisesSub) {
+            this.exercisesSub.unsubscribe();
+        }
     }
     onSubmit(f: NgForm) {
         this.trainingS.addToCurrent(f.value.exercise);

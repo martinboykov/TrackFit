@@ -11,9 +11,8 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterLinkDirectiveStub } from '../../testing/router-link-directive-stub';
 import { AuthService } from '../../auth/auth.service';
-import { of, BehaviorSubject } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { AuthMockService } from '../../auth/sharing/testing/auth-stub-service';
+import { of } from 'rxjs';
+import { authMockService } from '../..//auth/sharing/testing/auth-stub-service';
 
 // tslint:disable-next-line: component-selector
 @Component({ selector: 'mat-icon', template: '' })
@@ -21,16 +20,7 @@ class MatIconStubComponent {}
 // tslint:disable-next-line: component-selector
 @Component({ selector: 'mat-toolbar', template: '' })
 class MatToolbarStubComponent {}
-@Component({ selector: 'app-header', template: '' })
-class HeaderStubComponent {
-    @Input() drawer;
-}
 
-const authMockService = {
-    authListener: () => {},
-    authChange: new BehaviorSubject<boolean>(false),
-    logout: () => {},
-};
 
 describe('HeaderComponent', () => {
     let component: HeaderComponent;
@@ -39,13 +29,13 @@ describe('HeaderComponent', () => {
     let linkDestination: DebugElement[];
     // let authMockService: AuthMockService;
     let authService: AuthService;
+    let spy: jasmine.Spy;
     beforeEach(async(() => {
         // authMockService = new AuthMockService();
         TestBed.configureTestingModule({
             imports: [RouterTestingModule],
             declarations: [
                 HeaderComponent,
-                HeaderStubComponent,
                 MatIconStubComponent,
                 MatToolbarStubComponent,
                 RouterLinkDirectiveStub,
@@ -58,23 +48,59 @@ describe('HeaderComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HeaderComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
+        authService = TestBed.inject(AuthService);
         linkDestination = fixture.debugElement.queryAll(
             By.directive(RouterLinkDirectiveStub)
         );
         routerLinks = linkDestination.map((de) =>
             de.injector.get(RouterLinkDirectiveStub)
         );
-        authService = TestBed.inject(AuthService);
+        fixture.detectChanges();
     });
 
-    // it('should create', fakeAsync(() => {
-        // const spy = jasmine.createSpy();
-        // authMockService.authChange.subscribe(spy);
-        // tick(500);
-    //     expect(component).toBeTruthy();
-    // }));
     it('should create', () => {
         expect(component).toBeTruthy();
     });
+    // it('can get RouterLink from template', () => {
+    //     expect(routerLinks.length).toBe(3, 'should have 3 routerLink');
+    //     expect(routerLinks[0].linkParams).toEqual(['/']);
+    // });
+    // it('can click button width RouterLink in template', () => {
+    //     const linkDebug = linkDestination[0];
+    //     const linkEl = routerLinks[0];
+    //     expect(linkEl.navigatedTo).toBeNull('should not have navigated yet');
+    //     linkDebug.triggerEventHandler('click', {});
+    //     fixture.detectChanges();
+    //     expect(linkEl.navigatedTo).toEqual(['/']);
+    // });
+    // it('can click button width RouterLink in template', () => {
+    //     const linkDebug = linkDestination[1];
+    //     const linkEl = routerLinks[1];
+    //     expect(linkEl.navigatedTo).toBeNull('should not have navigated yet');
+    //     linkDebug.triggerEventHandler('click', {});
+    //     fixture.detectChanges();
+    //     expect(linkEl.navigatedTo).toEqual(['training']);
+    // });
+    // it('logout to be called', fakeAsync(() => {
+    //     component.isAuth = true;
+    //     fixture.detectChanges();
+    //     tick(500);
+    //     const onLogoutLink = fixture.debugElement.query(By.css('#logout'))
+    //         .nativeElement;
+    //     console.log(onLogoutLink);
+    //     spy = spyOn(authService, 'logout').and.callThrough();
+    //     onLogoutLink.click();
+    //     expect(spy).toHaveBeenCalled();
+    // }));
+    // it('login to be called', fakeAsync(() => {
+    //     component.isAuth = false;
+    //     fixture.detectChanges();
+    //     tick(500);
+    //     const onLoginLink = fixture.debugElement.query(By.css('#login'))
+    //         .nativeElement;
+    //     console.log(onLoginLink);
+    //     onLoginLink.click();
+    //     spy = spyOn(authService, 'login').and.callThrough();
+    //     expect(spy).toHaveBeenCalled();
+    // }));
 });

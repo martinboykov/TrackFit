@@ -30,11 +30,10 @@ export class TrainingComponent implements OnInit, OnDestroy {
                 this.currentTrainings = trainings;
             }
         );
-
     }
     ngOnDestroy() {
-        this.currentTrainingsSub.unsubscribe();
-        this.selectedTabSub.unsubscribe();
+        if (this.currentTrainingsSub) this.currentTrainingsSub.unsubscribe();
+        if (this.selectedTabSub) this.selectedTabSub.unsubscribe();
     }
     onTabClick(tab: MatTabChangeEvent) {
         this.trainingS.changeTabTo(tab.index);
