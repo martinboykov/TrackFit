@@ -22,6 +22,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ProfileComponent } from './auth/profile/profile.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -35,6 +36,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
         HeaderComponent,
         SideNavListComponent,
         StopTrainingComponent,
+        ProfileComponent,
     ],
     imports: [
         BrowserModule,

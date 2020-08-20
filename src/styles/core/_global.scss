@@ -18,6 +18,8 @@ body {
         max-width: $xl;
         margin-left: auto;
         margin-right: auto;
+        padding-left: $spacer;
+        padding-right: $spacer;
         @include transition(padding);
     }
     .items-container {
@@ -46,11 +48,14 @@ body {
     .mat-progress-spinner circle {
         @include transition(stroke-dashoffset, 1s);
     }
-
 }
 
 @include mq($lg) {
     #tf {
+        .container {
+            padding-left: $spacer;
+            padding-right: $spacer;
+        }
     }
 }
 

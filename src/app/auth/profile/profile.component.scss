@@ -1,0 +1,10 @@
+@import 'core/variables';
+
+mat-card {
+    max-width: 400px !important;
+}
+
+.example-header-image {
+    background-size: cover;
+    margin-right: $spacer;
+}

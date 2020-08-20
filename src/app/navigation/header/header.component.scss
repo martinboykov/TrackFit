@@ -78,7 +78,7 @@ a {
 }
 @include mq($lg) {
     .logo {
-        margin-left: 0;
+        margin-left: $spacer;
     }
     .side-nav-toggle-button {
         display: block;
@@ -89,9 +89,6 @@ a {
 }
 
 @include mq($md) {
-    .logo {
-        margin-left: 0;
-    }
 }
 @include mq($sm) {
     .logo {

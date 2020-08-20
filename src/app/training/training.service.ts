@@ -3,6 +3,8 @@ import { Training, BodyPart, TrainingState } from './training.model';
 import { BehaviorSubject, pipe } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +22,11 @@ export class TrainingService {
     pastTrainings: Training[] = [];
     pastTrainingsSub = new BehaviorSubject<Training[]>(this.pastTrainings);
 
-    constructor(private db: AngularFirestore) {}
+    constructor(
+        private db: AngularFirestore,
+        private fireAuthS: AngularFireAuth,
+        private authS: AuthService
+    ) {}
 
     changeTabTo(tab) {
         this.tabSub.next(tab);
@@ -34,22 +40,13 @@ export class TrainingService {
                 take(1),
                 map((response) => {
                     return response.map((data) => {
-                        return {
-                            id: data.payload.doc.id,
-                            name: data.payload.doc.data().name,
-                            type: data.payload.doc.data().type,
-                            reps: data.payload.doc.data().reps,
-                            repsCompleted: data.payload.doc.data().repsCompleted,
-                            duration: data.payload.doc.data().duration,
-                            progress: data.payload.doc.data().progress,
-                        };
+                        return this.extractData(data);
                     });
                 })
             )
             .subscribe(
                 (exercises: Training[]) => {
                     this.exercisesSub.next(exercises);
-                    console.log(exercises);
                 },
                 (error) => {
                     console.log(error);
@@ -64,53 +61,22 @@ export class TrainingService {
             .pipe(
                 take(1),
                 map((data) => {
-                    const training: Training = {
-                        id: data.payload.id,
-                        name: data.payload.data().name,
-                        type: data.payload.data().type,
-                        reps: data.payload.data().reps,
-                        repsCompleted: data.payload.data().repsCompleted,
-                        duration: data.payload.data().duration,
-                        progress: data.payload.data().progress,
-                        state: data.payload.data().state,
-                        dateStart: data.payload.data().dateStart.toDate(),
-                    };
-                    if (data.payload.data().lastModified) {
-                        training.lastModified = data.payload
-                            .data()
-                            .lastModified.toDate();
-                    }
-                    return training;
+                    return this.extractData(data);
                 })
             );
     }
     getAllCurrent() {
+        const user = this.authS.authChange.getValue();
         this.db
-            .collection<Training>('currentTraining')
+            .collection<Training>('currentTraining', (ref) =>
+                ref.where('uid', '==', user.uid)
+            )
             .snapshotChanges()
             .pipe(
                 take(1),
                 map((response) => {
                     return response.map((data) => {
-                        const training: Training = {
-                            id: data.payload.doc.id,
-                            name: data.payload.doc.data().name,
-                            type: data.payload.doc.data().type,
-                            reps: data.payload.doc.data().reps,
-                            repsCompleted: data.payload.doc.data().repsCompleted,
-                            duration: data.payload.doc.data().duration,
-                            progress: data.payload.doc.data().progress,
-                            state: data.payload.doc.data().state,
-                            dateStart: data.payload.doc
-                                .data()
-                                .dateStart.toDate(),
-                        };
-                        if (data.payload.doc.data().lastModified) {
-                            training.lastModified = data.payload.doc
-                                .data()
-                                .lastModified.toDate();
-                        }
-                        return training;
+                        return this.extractData(data);
                     });
                 })
             )
@@ -133,8 +99,12 @@ export class TrainingService {
         });
     }
     addToCurrent(training: Training) {
+        const user = this.authS.authChange.getValue();
+        console.log(user);
+
         const newCurrentTraining = {
             ...training,
+            uid: user.uid,
             dateStart: new Date(),
         };
         this.db
@@ -146,39 +116,25 @@ export class TrainingService {
     }
     deleteFromCurrent(id: string) {
         this.db
-            .doc('currentTraining/' + id)
+            .collection('currentTraining')
+            .doc(id)
             .delete()
             .then(() => {
                 this.getAllCurrent();
             });
     }
     getAllPast() {
+        const user = this.authS.authChange.getValue();
         this.db
-            .collection<Training>('pastTraining')
+            .collection<Training>('pastTraining', (ref) =>
+                ref.where('uid', '==', user.uid)
+            )
             .snapshotChanges()
             .pipe(
                 take(1),
                 map((response) => {
                     return response.map((data) => {
-                        const training: Training = {
-                            id: data.payload.doc.id,
-                            name: data.payload.doc.data().name,
-                            type: data.payload.doc.data().type,
-                            reps: data.payload.doc.data().reps,
-                            repsCompleted: data.payload.doc.data().reps,
-                            duration: data.payload.doc.data().duration,
-                            progress: data.payload.doc.data().progress,
-                            state: data.payload.doc.data().state,
-                            dateStart: data.payload.doc
-                                .data()
-                                .dateStart.toDate(),
-                        };
-                        if (data.payload.doc.data().lastModified) {
-                            training.lastModified = data.payload.doc
-                                .data()
-                                .lastModified.toDate();
-                        }
-                        return training;
+                        return this.extractData(data);
                     });
                 })
             )
@@ -192,15 +148,22 @@ export class TrainingService {
             );
     }
     addToPast(training: Training, state: TrainingState) {
+        const user = this.authS.authChange.getValue();
+        console.log(user);
+
         const newPastTraining = {
             ...training,
+            uid: user.uid,
             dateEnd: new Date(),
             state,
         };
-        this.db.collection('pastTraining').add(newPastTraining).then(() => {
-            this.deleteFromCurrent(training.id);
-            this.getAllPast();
-        });
+        this.db
+            .collection('pastTraining')
+            .add(newPastTraining)
+            .then(() => {
+                this.deleteFromCurrent(training.id);
+                this.getAllPast();
+            });
     }
     deleteFromPast(id: string) {
         this.db
@@ -209,5 +172,28 @@ export class TrainingService {
             .then(() => {
                 this.getAllPast();
             });
+    }
+    extractData(data) {
+        const training: Training = {
+            id: data.payload.doc.id,
+            name: data.payload.doc.data().name,
+            type: data.payload.doc.data().type,
+            reps: data.payload.doc.data().reps,
+            repsCompleted: data.payload.doc.data().repsCompleted,
+            duration: data.payload.doc.data().duration,
+            progress: data.payload.doc.data().progress,
+        };
+        if (data.payload.doc.data().state) {
+            training.state = data.payload.doc.data().state;
+        }
+        if (data.payload.doc.data().dateStart) {
+            training.dateStart = data.payload.doc.data().dateStart.toDate();
+        }
+        if (data.payload.doc.data().lastModified) {
+            training.lastModified = data.payload.doc
+                .data()
+                .lastModified.toDate();
+        }
+        return training;
     }
 }

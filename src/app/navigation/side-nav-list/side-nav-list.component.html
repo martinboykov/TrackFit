@@ -20,6 +20,16 @@
   </a>
   <a *ngIf="isAuth"
      mat-list-item
+     routerLink="/profile"
+     routerLinkActive="active"
+     class="side-nav-list-item">
+    <mat-icon aria-hidden="false"
+              aria-label="App logo icon"
+              class="item-icon">person</mat-icon>
+    Profile
+  </a>
+  <a *ngIf="isAuth"
+     mat-list-item
      (click)="onLogout()"
      class="side-nav-list-item">
     <mat-icon aria-hidden="false"

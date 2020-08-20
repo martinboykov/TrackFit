@@ -4,7 +4,10 @@
     position: relative;
     z-index: 3;
 }
-
+main {
+    padding-top: $spacer;
+    padding-bottom: $spacer;
+}
 .side-nav-container {
     position: absolute;
     top: 64px;
@@ -23,6 +26,10 @@
 }
 
 @include mq($lg) {
+    main {
+        padding-top: $spacer;
+        padding-bottom: $spacer;
+    }
     .side-nav {
         display: block;
         position: absolute;

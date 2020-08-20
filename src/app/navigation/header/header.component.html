@@ -19,13 +19,20 @@
         Training
       </a>
       <a id="logout"
+         class="nav-link"
+         routerLink="/profile"
+         routerLinkActive="active"
+         *ngIf="isAuth">
+        Profile
+      </a>
+      <a id="logout"
          class="nav-link logout"
          (click)="onLogout()"
          *ngIf="isAuth">
         Logout
       </a>
       <a id="login"
-      class="nav-link"
+         class="nav-link"
          routerLink="/login"
          routerLinkActive="active"
          *ngIf="!isAuth">

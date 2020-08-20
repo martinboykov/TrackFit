@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
     selector: 'app-side-nav-list',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class SideNavListComponent implements OnInit, OnDestroy {
     @Input() drawer;
-    isAuth: boolean;
+    isAuth: User;
     authSub: Subscription;
     constructor(private authS: AuthService) {}
 
