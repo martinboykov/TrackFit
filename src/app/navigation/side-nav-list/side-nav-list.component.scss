@@ -3,10 +3,10 @@
 .container {
     display: flex;
     align-items: center;
-    background-color: $primary;
+    background-color: var(--primary);
     height: 64px;
     .side-nav-toggle-button {
-        color: $primary-text;
+        color: var(--primary-text);
     }
     .logo {
         display: flex;
@@ -22,7 +22,7 @@
         padding-top: 0;
         .side-nav-list-item {
             &.active {
-                background: rgba(0, 0, 0, 0.04);
+                background: var(--sidenav-links-active-bg);
             }
             .item-icon {
                 margin-right: 10px;

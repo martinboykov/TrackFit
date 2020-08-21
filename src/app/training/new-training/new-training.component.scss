@@ -9,7 +9,7 @@
             rgba(255, 255, 255, 0.9)
         ),
         url('/assets/images/fitness.jpg');
-    color: $secondary-text;
+    color: var(--secondary-text);
     border-radius: 0;
     background-size: cover;
     .card-header {
@@ -17,7 +17,7 @@
     }
 
     .card-header .header-title {
-        color: $secondary-text;
+        color: var(--secondary-text);
         text-align: center;
     }
     .card-content {
