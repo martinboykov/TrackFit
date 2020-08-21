@@ -5,7 +5,7 @@
          class="example-header-image"
          [ngStyle]="{ 'background-image': 'url(' + user.photoURL + ')'}"></div>
     <mat-card-title>{{user.email}}</mat-card-title>
-    <mat-card-subtitle>Role: {{user.roles.admin ? 'admin, ': ''}} {{user.roles.editor ? 'editor, ': ''}} {{user.roles.subscriber ? 'subscriber': ''}} </mat-card-subtitle>
+    <mat-card-subtitle>Role: {{user?.roles?.admin ? 'admin, ': ''}} {{user?.roles?.editor ? 'editor, ': ''}} {{user?.roles?.subscriber ? 'subscriber': ''}} </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>

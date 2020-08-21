@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "material-angularfire-ngrx": {
+    "trackfit": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/material-angularfire-ngrx",
+            "outputPath": "dist/trackfit",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "material-angularfire-ngrx:build"
+            "browserTarget": "trackfit:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "material-angularfire-ngrx:build:production"
+              "browserTarget": "trackfit:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "material-angularfire-ngrx:build"
+            "browserTarget": "trackfit:build"
           }
         },
         "test": {
@@ -127,18 +127,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "material-angularfire-ngrx:serve"
+            "devServerTarget": "trackfit:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "material-angularfire-ngrx:serve:production"
+              "devServerTarget": "trackfit:serve:production"
             }
           }
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/material-angularfire-ngrx/",
+            "baseHref": "/trackfit/",
             "name": "Martin Martinov",
             "email": "m.boykov.martinov@gmail.com"
           }
@@ -146,5 +146,5 @@
       }
     }
   },
-  "defaultProject": "material-angularfire-ngrx"
+  "defaultProject": "trackfit"
 }
