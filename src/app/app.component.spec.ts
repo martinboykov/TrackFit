@@ -1,7 +1,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { Component } from '@angular/core';
-import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { AuthService } from './auth/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { authMockService } from './auth/sharing/testing/auth-stub-service';
@@ -19,7 +18,7 @@ describe('AppComponent', () => {
             imports: [RouterTestingModule],
             declarations: [AppComponent, RouterOutletStubComponent],
             providers: [{ provide: AuthService, useValue: authMockService }],
-            schemas: [NO_ERRORS_SCHEMA],
+
         }).compileComponents();
     }));
     beforeEach(() => {

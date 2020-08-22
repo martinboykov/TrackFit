@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NewTrainingComponent } from './new-training.component';
 import { TrainingService } from '../training.service';
 import { trainingServiceStub } from '../sharing/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 describe('NewTrainingComponent', () => {
@@ -17,7 +16,6 @@ describe('NewTrainingComponent', () => {
             providers: [
                 { provide: TrainingService, useValue: trainingServiceStub },
             ],
-            schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));
 

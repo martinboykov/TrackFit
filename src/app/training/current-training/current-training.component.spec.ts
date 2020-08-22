@@ -6,7 +6,7 @@ import {
     trainingServiceStub,
     getTestCurrentTraining,
 } from '../sharing/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { MatSlider } from '@angular/material/slider';
 import { of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -31,7 +31,6 @@ describe('CurrentTrainingComponent', () => {
                 { provide: TrainingService, useValue: trainingServiceStub },
                 { provide: MatDialog, useValue: MаtDialogMock },
             ],
-            schemas: [NO_ERRORS_SCHEMA],
         }).compileComponents();
     }));
 

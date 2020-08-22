@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PastTrainingComponent } from './past-training.component';
 import { TrainingService } from '../training.service';
 import { trainingServiceStub } from '../sharing/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 describe('PastTrainingComponent', () => {
@@ -16,7 +16,7 @@ describe('PastTrainingComponent', () => {
             providers: [
                 { provide: TrainingService, useValue: trainingServiceStub },
             ],
-            schemas: [NO_ERRORS_SCHEMA],
+
         }).compileComponents();
     }));
 

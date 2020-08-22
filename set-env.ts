@@ -1,9 +1,6 @@
 const fs = require('fs');
 const writeFile = fs.writeFile;
 require('dotenv').config();
-// const environment = process.env.NODE_ENV;
-// const isProd = environment === 'production';
-// const targetPath = `./src/environments/environment${isProd ? '.prod' : ''}.ts`;
 const targetPath = `./src/environments/environment.prod.ts`;
 const envConfigFile = `export const environment = {
   production: true,
