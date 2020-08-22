@@ -3,7 +3,6 @@ import { User, AuthData } from './user.model';
 import { BehaviorSubject, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { firebaseConfig } from 'src/environments/secret';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { take, map, switchMap } from 'rxjs/operators';
 
@@ -73,9 +72,6 @@ export class AuthService {
     }
     logout() {
         this.onAuthStatusChange(null, '/login');
-        // localStorage.removeItem(
-        //     `firebase:authUser:${firebaseConfig.apiKey}:[DEFAULT]`
-        // );
         if (window.indexedDB) {
             indexedDB.deleteDatabase('firebaseLocalStorageDb');
         }

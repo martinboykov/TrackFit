@@ -134,14 +134,6 @@
               "devServerTarget": "trackfit:serve:production"
             }
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "baseHref": "/trackfit/",
-            "name": "Martin Martinov",
-            "email": "m.boykov.martinov@gmail.com"
-          }
         }
       }
     }
